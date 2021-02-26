@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>销户</title>
+	</head>
+	<SCRIPT type=text/javascript src="<?php echo base_url('application/views/js/jquery.js');?>"></SCRIPT>
+	<body>
+		
+		<script>
+			$(function () {
+				var info = document.getElementById('tips').value.replace(/<.*?>/ig,"");
+				var is = document.getElementById('tipss').value.replace(/<.*?>/ig,"");
+				var back = document.getElementById('tipsss').value.replace(/<.*?>/ig,"");
+				if(info==""){
+					//不做任何处理
+				}else {
+					alert(info);
+				}
+
+				if(is==""){
+					//不做任何处理
+				}else {
+					alert(is);
+					top.location = "<?php echo base_url('home');?>";	/*跳出iframe的跳转方式*/
+				}
+
+				if(back==""){
+					//不做任何处理
+				}else {
+					top.location = "<?php echo base_url('user');?>";
+				}
+			});
+
+				function tip(){
+					var flag=confirm("再次确定要销毁吗？")
+					if(flag){
+						return true;
+					}else{
+						return false;
+					}
+				}
+		</script>
+
+		<?php
+			if(!isset($info)){
+				$i='';
+			}else{
+				$i=$info;
+			}
+
+			if(!isset($is)){
+				$j='';
+			}else{
+				$j=$is;
+			}
+
+			if(!isset($back)){
+				$k='';
+			}else{
+				$k=$back;
+			}
+		?>
+		<!--提示还尚有余额使用-->
+		<input type="hidden" id="tips" value="<?php echo $i;?>">
+		<!--销户成功提示，感谢使用-->
+		<input type="hidden" id="tipss" value="<?php echo $j;?>">
+		<!--点击取消使用，回到user首页-->
+		<input type="hidden" id="tipsss" value="<?php echo $k;?>">
+		<!-- 如果账户还有余额，无法销户 -->
+		<div style="text-align: center;padding-top: 90px;font-size: xx-large;color: red;">
+			<div>您的账户非常宝贵，您确定要摧毁账户？</div>
+			
+				<table style="margin: 0 auto;">
+				<tr>
+				<td><form action="<?php echo base_url('user/destruction_bsn'); ?>" method="post" name="queding" onsubmit="return tip(queding)"><table  style="padding-right: 5px;"><tr><td><input type="submit" name="a" value="确定" style="height: 30px;width: 50px;"/></td></tr></table></form></td>
+				<td><form action="<?php echo base_url('user/destruction_bsn'); ?>" method="post"><table  style="padding-left: 5px;"><tr><td><input type="submit" name="a" value="取消" style="height: 30px;width: 50px;"/></td></tr></table></form></td>
+				</tr>
+				</table>
+		</div>
+	</body>
+</html>

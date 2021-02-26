@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>找回密码3</title>
+	</head>
+	<SCRIPT type=text/javascript src="<?php echo base_url('application/views/js/jquery.js');?>"></SCRIPT>
+	<body>
+		<script>
+			function yanZheng(form){
+				for(var i=0;i<form.length;i++){
+						if(form.elements[i].value==""){
+							alert("表单不能为空");
+							return false;
+						}
+					}
+					return yiyang();
+			}
+			
+			function yiyang(){
+				
+					var pwd1=document.getElementById("password1").value;
+					var pwd2=document.getElementById("password2").value;
+					
+					if(pwd1!=pwd2){
+						alert("两次密码不一致");
+						return false;
+					}
+					return true;
+			}
+			$(function () {
+				/*如果用户输入表单不符合要求，错误信息会保存到hidden value中*/
+				var error_info = document.getElementById('tips').value.replace(/<.*?>/ig,"");
+				if(error_info==""){
+					//不做任何处理
+				}else {
+					alert(error_info);
+				}
+			});
+		</script>
+
+		<?php
+			$i='';
+			if(!isset($error_info)){
+				$i="";
+			}else{
+				$i=$error_info;
+			}
+		?>
+		<input type="hidden" id="tips" value="<?php echo $i; ?>">
+		<form  name="c" method="post" action="<?php echo base_url('password_reset/check'); ?>" onsubmit="return yanZheng(c)">
+		<input type="hidden" name="hd" value="333333333333333"/>
+		<input type="hidden" name="ac" value="<?php echo $account; ?>"/>
+			<table style="margin: 0 auto;">
+				<tr>
+					<td>输入新密码：&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password1" id="password1"/></td>
+				</tr>
+				<tr>
+					<td>确认密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="password2" name="password2"/></td>
+				</tr>
+				<tr  align="center">
+					<td><input type="submit" value="提交"/></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

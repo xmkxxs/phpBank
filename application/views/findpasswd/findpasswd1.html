@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>找回密码1</title>
+	</head>
+	<SCRIPT type=text/javascript src="<?php echo base_url('application/views/js/jquery.js');?>"></SCRIPT>
+	<body>
+		<script>
+			function yanZheng(form){
+				for(var i=0;i<form.length;i++){
+						if(form.elements[i].value==""){
+							alert("表单不能为空");
+							return false;
+						}
+						if(form.elements[0].value.length<15){
+							alert("请输入15位银行卡号");
+							return false;
+						}
+					}
+					return true;
+			}
+			$(function () {
+				/*如果用户输入表单不符合要求，错误信息会保存到hidden value中*/
+				var error_info = document.getElementById('tips').value.replace(/<.*?>/ig,"");
+				if(error_info==""){
+					//不做任何处理
+				}else {
+					alert(error_info);
+				}
+			});
+		</script>
+
+		<?php
+			$i='';
+			if(!isset($error_info)){
+				$i="";
+			}else{
+				$i=$error_info;
+			}
+		?>
+
+		<!--获取接收服务器返回消息用-->
+		<input type="hidden" id="tips" value="<?php echo $i; ?>">
+
+		<form name="c" method="post" action="<?php echo base_url('password_reset/check'); ?>" onsubmit="return yanZheng(c)">
+			<!--找回密码分3个页面，共用一个类中的同一个方法，所以三个页面需要带不同的值以便方法执行不同的业务,value位15位，否则不满足js-->
+			<input type="hidden" value="111111111111111" name="hd">
+			<table style="margin: 0 auto;">
+				<tr>
+					<td>
+						请输入您的15位银行卡号:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="account" id="account"/>
+					</td>
+				</tr>
+				<tr align="center">
+					<td>
+						&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="下一步" />
+					</td>
+				</tr>
+			</table>
+		</form>
+		
+		
+	</body>
+</html>

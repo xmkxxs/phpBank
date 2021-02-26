@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>取款</title>
+	</head>
+	<SCRIPT type=text/javascript src="<?php echo base_url('application/views/js/jquery.js');?>"></SCRIPT>
+	<script type="text/javascript" src="<?php echo base_url('application/views');?>/js/check.js"></script>
+	<script>
+		$(function () {
+			var info = document.getElementById('tips').value.replace(/<.*?>/ig,"");
+			if(info==""){
+				//不做任何处理
+			}else {
+				alert(info);
+			}
+		});
+	</script>
+	<body>
+
+		<?php
+			if(!isset($info)){
+				$i="";
+			}else{
+				$i=$info;
+			}
+		?>
+		<input type="hidden" id="tips" value="<?php echo $i; ?>">
+		<form name="qu" method="post" action="<?php echo base_url('user/get_bsn');?>" onsubmit="return checkCun(qu)">
+			<table style="margin: 0 auto;padding-top: 100px;height:300px">
+				<tr valign="bottom">
+					<td>取出金额：<input type="text" name="number" /></td>
+				</tr>
+				<tr valign="top">
+					<td align="center"><input type="submit" value="取款" /></td>
+				</tr>
+			</table>
+		</form>
+
+
+	</body>
+</html>

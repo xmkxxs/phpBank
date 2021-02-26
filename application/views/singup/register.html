@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+	</head>
+	<SCRIPT type=text/javascript src="<?php echo base_url('application/views/js/jquery.js');?>"></SCRIPT>
+	<script>
+		$(function () {
+			/*如果用户输入表单不符合要求，错误信息会保存到hidden value中*/
+			var error_info = document.getElementById('error_info_hidden').value.replace(/<.*?>/ig,"");
+			if(error_info==""){
+				//不做任何处理
+			}else {
+				alert(error_info);
+			}
+			/*如果用户注册成功*/
+			var success = document.getElementById('success').value.replace(/<.*?>/ig,"");
+			if(success==""){
+				//不做任何处理
+			}else {
+				alert('注册成功！您的卡号是：'+success+'，请牢记卡号，现在您可以登录了。');
+			}
+		});
+	</script>
+	<body>
+
+		<!--获取hidden中value是否有Join.php传来的值，有用alert弹出-->
+		<?php
+			$i="";
+			if(!isset($error_info)){
+				$i="";
+			}else{
+				$i=$error_info;
+			}
+
+			$s="";
+			if(!isset($account)){
+				$s="";
+			}else{
+				$s=$account;
+			}
+		?>
+
+		<!--过渡存值使用-->
+		<input type="hidden" id="error_info_hidden" value="<?php echo $i; ?>">
+		<input type="hidden" id="success" value="<?php echo $s; ?>">
+		<!-- 表单中，姓名密码和电话不能为空，点击submit前会执行onsubmit，js代码会判断是否有空表单 -->
+		<form action="<?php echo base_url('join/singup'); ?>" method="post" onsubmit="return jiancha()">
+		<table style="margin: 0 auto; padding-top: 5%;">
+			<tr>
+				<td>姓名</td>
+				<td><input type="text" name="name" id="name"/></td>
+				<td><div id="namediv"></div></td>
+			</tr>
+			<tr>
+				<td>密码</td>
+				<td><input type="password" name="password" id="password"/></td>
+				<td><div id="passworddiv"></div></td>
+			</tr>
+			<tr>
+				<td>电话</td>
+				<td><input type="text" name="mobile" id="mobile"/></td>
+				<td><div id="mobilediv"></div></td>
+			</tr>
+			<tr>
+				<td>邮箱</td>
+				<td><input type="text" name="email"/></td>
+				<td><div></div></td>
+			</tr>
+			<tr>
+				<td>密保问题</td>
+				<td><input type="text" name="question" id="question"/></td>
+				<td><div id="questiondiv"></div></td>
+			</tr>
+			<tr>
+				<td>密保答案</td>
+				<td><input type="text" name="answer" id="answer"/></td>
+				<td><div id="answerdiv"></div></td>
+			</tr>
+		</table>
+		<div style="text-align: center;">
+			<input type="submit" value="注册" />
+		</div>
+		
+		</form>
+		
+		<script>
+			//判断姓名密码电话是否有空
+			function jiancha(){
+				if(document.getElementById("name").value==""){
+					document.getElementById("namediv").innerHTML="<font style='color: red;'>姓名不能空!</font>";
+				return false;
+				}
+				if(document.getElementById("name").value!=""){//如果先写密码点击后,会提示姓名为空,当我们姓名填写后将提示姓名为空的提示去掉
+					document.getElementById("namediv").innerHTML="";
+				}
+				if(document.getElementById("password").value==""){
+					document.getElementById("passworddiv").innerHTML="<font style='color: red;'>密码不能空!</font>";
+				return false;
+				}
+				if(document.getElementById("password").value!=""){//如果先写密码点击后,会提示姓名为空,当我们姓名填写后将提示姓名为空的提示去掉
+					document.getElementById("passworddiv").innerHTML="";
+				}
+				
+				if(document.getElementById("mobile").value==""){
+					document.getElementById("mobilediv").innerHTML="<font style='color: red;'>手机号不能空!</font>";
+				return false;
+				}
+				if(document.getElementById("mobile").value!=""){//如果先写密码点击后,会提示姓名为空,当我们姓名填写后将提示姓名为空的提示去掉
+					document.getElementById("mobilediv").innerHTML="";
+				}
+				if(document.getElementById("question").value==""){
+					document.getElementById("questiondiv").innerHTML="<font style='color: red;'>密保问题不能空!</font>";
+				return false;
+				}
+				if(document.getElementById("question").value!=""){
+					document.getElementById("questiondiv").innerHTML="";
+				}
+				if(document.getElementById("answer").value==""){
+					document.getElementById("answerdiv").innerHTML="<font style='color: red;'>密保答案不能空!</font>";
+				return false;
+				}
+				if(document.getElementById("answer").value!=""){//如果先写密码点击后,会提示姓名为空,当我们姓名填写后将提示姓名为空的提示去掉
+					document.getElementById("answerdiv").innerHTML="";
+				}
+				
+				return true;
+			}
+		</script>
+	</body>
+</html>

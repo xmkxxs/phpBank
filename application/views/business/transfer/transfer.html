@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>转账</title>
+	</head>
+	<SCRIPT type=text/javascript src="<?php echo base_url('application/views/js/jquery.js');?>"></SCRIPT>
+	<script type="text/javascript" src="<?php echo base_url('application/views');?>/js/check.js"></script>
+	<script>
+		$(function () {
+			var info = document.getElementById('tips').value.replace(/<.*?>/ig,"");
+			if(info==""){
+				//不做任何处理
+			}else {
+				alert(info);
+			}
+		});
+	</script>
+	<body>
+
+		<?php
+			if(!isset($info)){
+				$i="";
+			}else{
+				$i=$info;
+			}
+		?>
+		<input type="hidden" id="tips" value="<?php echo $i; ?>">
+		<form method="post" action="<?php echo base_url('user/transfer_bsn'); ?>" name="zhuan" onsubmit="return checkZhuan(zhuan)">
+			<table style="margin: 0 auto;padding-top: 100px;height:300px">
+				<tr valign="bottom">
+					<td>付款账户：<input type="text" name="account1" value="<?php echo $account;?>" readonly="readonly"></td><!-- 设置为当前用户的银行卡号，不可点击 -->
+				</tr>
+				<tr>
+					<td>收款账户：<input type="text" name="account2" id="account"/></td>
+				</tr>
+				<tr valign="top">
+					<td>转账金额：<input type="text" name="number" id="number" autocomplete="off"/></td>
+				</tr>
+				<tr style="text-align:center" valign="top" >
+					<td><input type="submit" value="转账" style="width: 200px;"/></td>
+				</tr>
+			</table>
+		</form>
+
+	</body>
+</html>

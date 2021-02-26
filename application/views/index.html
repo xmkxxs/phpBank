@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>首页</title>
+	</head>
+	<style>
+		/* 清除默认样式 */
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+	<script>
+		window.onload=function () {
+			var error_info = document.getElementById('error_info_login').value.replace(/<.*?>/ig,"");
+			if(error_info==""){
+				//不做任何处理
+			}else {
+				/*是控制器赋予的success，代表用户名密码正确，即将转跳用户页面*/
+				if(error_info=="success"){
+					alert("登录成功！");
+					/*发送请求到User.php*/
+					window.location.href="<?php echo base_url('user'); ?>";
+				}else {
+					alert(error_info);
+				}
+			}
+		}
+	</script>
+<body>
+
+	<!--因为我不知道如何js直接接收php发来的数据，所以先将发来的用于alert的数据赋值给一个变量，将此变量作为隐藏域的value，通过js获取隐藏域值再alert-->
+	<?php
+		$error_info_login="";
+		if(!isset($error_info)){
+			$error_info_login="";
+		}else{
+			$error_info_login=$error_info;
+		}
+	?>
+	<input type="hidden" name="error_info_login" id="error_info_login" value="<?php echo $error_info_login; ?>" />
+
+
+	<!-- 银行logo -->
+	<div style="text-align: center;">
+		<img src="<?php echo base_url();?>application/views/picture/bankHead.jpg" style="height: 100px; width: 10%;"/>
+	</div>
+	
+	<!-- 登陆表单 --><!-- 提交表单前检测账号或密码是否为空 ,返回布尔值-->
+	<form action="<?php echo base_url('home/login'); ?>" method="post" onsubmit=" return jiancha()">
+	<table style="margin:0 auto;">
+		<tr>
+			<td>账号：</td>
+			<td><input type="text" name="user" id="user"></td>
+		</tr>
+		<tr>
+			<td>密码：</td>
+			<td><input type="password" name="password" id="password"></td>
+		</tr>
+	</table>
+	<div style="text-align: center;">
+	<!-- 登陆 -->
+		<input type="submit" value="登陆" style="width: 200px;"/>
+	</div>
+	</form>
+	
+	<!-- 检测账号密码是否为空 -->
+	<script>
+		function jiancha(){
+			if(document.getElementById("user").value==""){
+				alert("账号为空!");
+				return false;
+			}
+			if(document.getElementById("password").value==""){
+				alert("密码为空");
+				return false;
+			}
+			return true;
+		}
+	</script>
+
+	
+	<!-- 注册&忘记密码 -->
+	<div style="text-align: center; padding-top: ;">
+	<a href="<?php echo base_url('join'); ?>" target="_blank"><input type="button" value="注册卡号" /></a>
+	<a href="<?php echo base_url('password_reset'); ?>" target="_blank"><input type="button" value="忘记密码" /></a>
+	</div>
+	
+	<!-- 二维码&官网微信 -->
+	<div style="height: 150px;width: 100%;background-color: turquoise;text-align: center;padding-top: 40px;margin-top: 18%;">
+		<span style="margin-right: 10px;">
+			<img src="<?php echo base_url();?>application/views/picture/leftQR.png" />
+		</span>
+		<span style="margin-left: 10px;">
+			<img src="<?php echo base_url();?>application/views/picture/rightQR%20.png" />
+		</span>
+		<div style="padding-top: 20px;">
+			<span style="margin-right: 10px;">下载掌上银行</span>
+			<span style="margin-left: 10px;">关注官方微信</span>	
+		</div>
+	</div>
+	
+	<!-- 最底部链接 -->
+	<div style="text-align: center; margin-top: 30px;">
+		<span><a href="http://www.abchina.com/cn/PublicPlate/documents/201512/t20151228_817036.htm" target="_blank" style="color: darkgrey;text-decoration:none;">网站声明</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span style="color: darkgrey;">|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span><a href="http://www.abchina.com/cn/PublicPlate/websitemap_new/"  target="_blank" style="color: darkgrey;text-decoration:none;">网站地图</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span style="color: darkgrey;">|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span><a href="http://www.abchina.com/cn/AboutABC/ContactUs/"  target="_blank" style="color: darkgrey;text-decoration:none;">联系我们</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span style="color: darkgrey;">|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span style="color: darkgrey;">客服热线:<font color="orange">&nbsp;&nbsp;95599</font>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>找回密码2</title>
+	</head>
+	<SCRIPT type=text/javascript src="<?php echo base_url('application/views/js/jquery.js');?>"></SCRIPT>
+	<body>
+		<script>
+			$(function () {
+				/*来到页面后首先发送ajax获取用户的密保问题根据账户*/
+				$.ajax({
+					type:'post',
+					url:"<?php echo base_url('Password_reset/get_question_by_account/') . $account;?>",
+					success:function (response) {
+						$('#question').val(response);
+					}
+				});/*ajax END*/
+
+				/*如果用户输入表单不符合要求，错误信息会保存到hidden value中*/
+				var error_info = document.getElementById('tips').value.replace(/<.*?>/ig,"");
+				if(error_info==""){
+					//不做任何处理
+				}else {
+					alert(error_info);
+				}
+
+				function yanZheng(form){
+					for(var i=0;i<form.length;i++){
+						if(form.elements[1].value==""){
+							alert("表单不能为空");
+							return false;
+						}
+					}
+					return true;
+				}
+			});
+
+
+		</script>
+
+		<?php
+			$i='';
+			if(!isset($error_info)){
+				$i="";
+			}else{
+				$i=$error_info;
+			}
+		?>
+		<!--接收后端返回提示-->
+		<input type="hidden" id="tips" value="<?php echo $i; ?>">
+		<form name="c" method="post" action="" onsubmit="return yanZheng(c)">
+			<input type="hidden" name="hd" value="222222222222222">
+			<!--接收第一个页面后台传入的账户数据，用于ajax-->
+			<input type="hidden" name="ac" value="<?php echo $account; ?>">
+			<table style="margin: 0 auto;">
+				<tr>
+					<td>密保问题：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="question" value="" readonly="readonly"/></td>
+				</tr>
+				<tr>
+					<td>密保答案：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="answer"/></td>
+				</tr>
+				<tr align="center">
+					<td><input type="submit" value="下一步"/></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="account" value="<%=account%>"></td>	<!-- 把账户获取给服务器，服务器通过这个账户获取User中的密保答案和用户写的答案对比 -->
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
