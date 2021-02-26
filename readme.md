@@ -1,6 +1,22 @@
-###################
-What is CodeIgniter
-###################
+# 仿银行小项目，使用php和ci框架，根据JavaWebBank更改，只考虑实现，不考虑安全。
+
+## 使用PHP，JQuery，html，css，MySQL
+
+## 简单项目，可用于期末作业。
+
+## 项目截图
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/about.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/1.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/2.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/3.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/4.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/5.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/6.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/7.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/8.png)
+![image](https://github.com/xmkxxs/phpBank/blob/master/READMEuseIMG/9.png)
+
+## What is CodeIgniter
 
 CodeIgniter is an Application Development Framework - a toolkit - for people
 who build web sites using PHP. Its goal is to enable you to develop projects
@@ -10,24 +26,18 @@ interface and logical structure to access these libraries. CodeIgniter lets
 you creatively focus on your project by minimizing the amount of code needed
 for a given task.
 
-*******************
-Release Information
-*******************
+## Release Information
 
 This repo contains in-development code for future releases. To download the
 latest stable release please visit the `CodeIgniter Downloads
 <https://codeigniter.com/download>`_ page.
 
-**************************
-Changelog and New Features
-**************************
+## Changelog and New Features
 
 You can find a list of all changes for each release in the `user
 guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
 
-*******************
-Server Requirements
-*******************
+## Server Requirements
 
 PHP version 5.6 or newer is recommended.
 
@@ -35,23 +45,17 @@ It should work on 5.3.7 as well, but we strongly advise you NOT to run
 such old versions of PHP, because of potential security and performance
 issues, as well as missing features.
 
-************
-Installation
-************
+## Installation
 
 Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
 of the CodeIgniter User Guide.
 
-*******
-License
-*******
+## License
 
 Please see the `license
 agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
 
-*********
-Resources
-*********
+## Resources
 
 -  `User Guide <https://codeigniter.com/docs>`_
 -  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
@@ -62,9 +66,7 @@ Resources
 Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
 or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
 
-***************
-Acknowledgement
-***************
+## Acknowledgement
 
 The CodeIgniter team would like to thank EllisLab, all the
 contributors to the CodeIgniter project and you, the CodeIgniter user.
